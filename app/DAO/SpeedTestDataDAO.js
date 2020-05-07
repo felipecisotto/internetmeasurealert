@@ -1,38 +1,37 @@
-var mongoose = require('mongoose')
+var measures = require("../model/Measure")
+var moment = require('moment')
 
-var measures = new mongoose.Schema({
-    bytes_sent: Number,
-    bytes_received: Number,
-    server: {
-        country: String,
-        url: String,
-        name: String,
-        lat: mongoose.Schema.Types.Decimal128,
-        host: String,
-        sponsor: String,
-        latency: mongoose.Schema.Types.Decimal128,
-        cc: String,
-        d: mongoose.Schema.Types.Decimal128,
-        id: Number,
-        lon: mongoose.Schema.Types.Decimal128
-    },
-    timestamp: Date,
-    share: String,
-    download: mongoose.Schema.Types.Decimal128,
-    client: {
-        ispulavg: Number,
-        rating: Number,
-        country: String,
-        isprating: mongoose.Schema.Types.Decimal128,
-        lat: mongoose.Schema.Types.Decimal128,
-        ispdlavg: mongoose.Schema.Types.Decimal128,
-        isp: String,
-        loggedin: String,
-        ip: String,
-        lon: mongoose.Schema.Types.Decimal128,
-    },
-    ping: mongoose.Schema.Types.Decimal128,
-    upload: mongoose.Schema.Types.Decimal128
-})
+let insertMeasure = async function (measure) {
+    return new Promise(async function (resolve, reject) {
+        try {
+            var measureInser = new measures(measure)
+            resolve(measureInser.save())
+        } catch (error) {
+            reject(error)
+        }
 
-module.exports = mongoose.model('Measures', measures)
+    })
+}
+
+let getDayMeasures = async function(){
+    return new Promise(async function(resolve,reject) {
+        try {
+            var start = moment().startOf('day');
+            
+            var end = moment().endOf('day');
+
+            var todayMeasures = measures.find({ timestamp: { '$gte': start, '$lte': end }})
+            resolve(todayMeasures)
+
+        } catch (error) {
+            console.log('error when getting today measures: '+error)
+            reject(error)
+        }
+    })
+}
+
+
+module.exports = {
+    insertMeasure:insertMeasure,
+    getDayMeasures:getDayMeasures
+}

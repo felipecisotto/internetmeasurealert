@@ -1,7 +1,7 @@
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
-var measures = require("../DAO/SpeedTestDataDAO")
-let runTest = async function (app) {
+var MeasureDAO = require("../DAO/SpeedTestDataDAO")
+let runTest = async function () {
     return new Promise(async function (resolve, reject) {
         try {
             const { stdout, stderr } = await exec('speedtest --json');
@@ -10,8 +10,7 @@ let runTest = async function (app) {
                 reject(stderr)
             }
             measure = JSON.parse(stdout)
-            var measureInser = new measures(measure)
-            measureInser.save()
+            MeasureDAO.insertMeasure(measure)
             resolve(measure)
         } catch (error) {
             reject(error)
@@ -30,8 +29,14 @@ let runLiveTest = async function (app,req,resp) {
     resp.json(returnJson)
 
 }
+let getTodayResults = async function (app,req,resp){
+    var measures = await MeasureDAO.getDayMeasures()
 
+
+    resp.json(measures)
+}
 module.exports = { 
     runTest:runTest,
-    runLiveTest:runLiveTest
+    runLiveTest:runLiveTest,
+    getTodayResults:getTodayResults
 }
