@@ -1,16 +1,17 @@
 let request = require('request-promise');
-
+const userId = process.env.USER_ID
+const botId = process.env.BOT_ID
 
 let sendMessage = function (text) {
     return new Promise(async function (resolve, reject) {
         var body = {
-            chat_id:801208523,
+            chat_id:userId,
             text:text
         }
         const options = {
             method: 'POST'
             , json: true
-            , uri: 'https://api.telegram.org/bot1223452068:AAFHl4ABmAnvJHhdXizlxtVqyEIEV-q9ERI/sendMessage'
+            , uri: 'https://api.telegram.org/bot'+BOT_ID+'/sendMessage'
             , body:body
         };
         try {
