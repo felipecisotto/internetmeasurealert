@@ -2,8 +2,10 @@ const cron = require("node-cron");
 const speedTestController = require("./SpeedTestController");
 var MeasureDAO = require("../DAO/SpeedTestDataDAO")
 var telegramController = require("../controller/TelegramController")
+
 const runMeasure = "0 0 */1 * * *";
 const sendResults = "0 30 23 */1 * *";
+
 cron.schedule(runMeasure, function() {
     speedTestController.runTest()
 });

@@ -1,7 +1,6 @@
 # Descrição do Projeto 
 Serviço Feito para realizar medições de velocidade da internet (Download, Upload e ping) a cada 1 hora e enviado todos os dias as 23h para o telegram (Canal, Chat ou Grupo), podendo assim fazer contestações a sua operadora de internet.
 
-
 # Requisitos 
 * docker 
 * docker-compose 
@@ -17,15 +16,11 @@ Caso não tenha o docker ou o docker-compose instalado em sua máquina, é neces
 * Docker-Compose -> [Tutorial] (https://docs.docker.com/compose/install/)
 
 ### Criar .env 
-Para que o serviço funcione é necessário adicionar um .env com alguns parametros 
+Para que o serviço funcione é necessário adicionar um arquivo denominado .env com alguns parametros 
 
-RUN_MESUARE = Periodicidade que a leitura das velocidades devem ser feitas  
-SEND_RESULT = Periodiciodade que os resultados devem ser enviados  
 BOT_ID = ID do bot que deve ser recuperado atraves dos serviços do telegram   
 USER_ID = ID do seu usuário no Teleagram, que de ser atraves dos serviços do telegram 
 #### Exemplo 
-RUN_MEASURE = 0 0 */1 * * *  
-SEND_RESULT = 0 30 23 */1 * *  
 BOT_ID = 12312312dasdasd  
 USER_ID = 12312321  
 ### Baixando e iniciando o Projeto
@@ -38,6 +33,6 @@ USER_ID = 12312321
 ```
 
 # Rotas Disponíveis 
-* /speedTest (GET) -> Retorna os dados do que foram lidos no dia. 
+* /speedTest (GET) -> Retorna os dados do que foi lido hj
 * /speedTest (Post) -> Realiza uma leitura e retorna json com os dados solicitados
 
