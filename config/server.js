@@ -14,7 +14,7 @@ app.use(express.static('./public'));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}));
 
-mongoose.connect('mongodb://docker.for.mac.localhost:27017/internetMonitor');
+mongoose.connect('mongodb://mongo:27017/internetMonitor');
 
 //Configuração Consign
 consign()

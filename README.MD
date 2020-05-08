@@ -1,5 +1,6 @@
 # Descrição do Projeto 
-Serviço Feito para realizar medições de internet em um determinado periodo, e enviar para o telegram do usuário nos periodos solicitados. 
+Serviço Feito para realizar medições de velocidade da internet (Download, Upload e ping) a cada 1 hora e enviado todos os dias as 23h para o telegram (Canal, Chat ou Grupo), podendo assim fazer contestações a sua operadora de internet.
+
 
 # Requisitos 
 * docker 
@@ -37,7 +38,6 @@ USER_ID = 12312321
 ```
 
 # Rotas Disponíveis 
-* / (GET) -> Home com os gráficos das leituras realizadas. (EM CONSTRUÇÃO)
-* /speedTest (GET) -> Retorna os dados do que foi lido hj
+* /speedTest (GET) -> Retorna os dados do que foram lidos no dia. 
 * /speedTest (Post) -> Realiza uma leitura e retorna json com os dados solicitados
 

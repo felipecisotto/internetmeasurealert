@@ -1,0 +1,17 @@
+version: "3"
+services:
+  internetmeasure:
+    container_name: internetMeasure
+    restart: always
+    build: 
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - "3000:3000"
+    links:
+      - mongo
+  mongo:
+    container_name: dbInternetMeasure
+    image: mongo
+    volumes:
+      - /data/db
