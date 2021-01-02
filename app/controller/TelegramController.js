@@ -11,7 +11,7 @@ let sendMessage = function (text) {
         const options = {
             method: 'POST'
             , json: true
-            , uri: 'https://api.telegram.org/bot'+BOT_ID+'/sendMessage'
+            , uri: 'https://api.telegram.org/bot'+botId+'/sendMessage'
             , body:body
         };
         try {

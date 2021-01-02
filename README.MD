@@ -1,6 +1,3 @@
-# Descrição do Projeto 
-Serviço Feito para realizar medições de velocidade da internet (Download, Upload e ping) a cada 1 hora e enviado todos os dias as 23h para o telegram (Canal, Chat ou Grupo), podendo assim fazer contestações a sua operadora de internet.
-
 # Requisitos 
 * docker 
 * docker-compose 
